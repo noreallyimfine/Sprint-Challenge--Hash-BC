@@ -26,12 +26,13 @@ def get_indices_of_item_weights(weights, length, limit):
             else:
                 # return tuple if yes
                 other_weight = hash_table_retrieve(ht, (limit - weight))
+                print(other_weight)
                 if weight > other_weight:
-                    answer = (index, other_weight.value)
+                    answer = (index, other_weight)
                     print(answer)
                     return answer
                 else:
-                    answer = (other_weight.value, index)
+                    answer = (other_weight, index)
                     print(answer)
                     return answer
 
