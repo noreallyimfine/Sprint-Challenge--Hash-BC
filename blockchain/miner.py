@@ -21,17 +21,16 @@ def proof_of_work(last_proof):
     """
 
     start = timer()
-
+    print(start)
     print("Searching for next proof")
     #  TODO: Your code here
     proof = 0
-
     while valid_proof(last_proof, proof) is False:
         proof += 1
-        # if proof > 10**6:
-        #     elapsed_time = timer() - start
-        #     print(f"Didn't find proof in {str(elapsed_time)}")
-        #     return
+        if proof > 10**7:
+            elapsed_time = timer() - start
+            print(f"Didn't find proof in {str(elapsed_time)}")
+            return proof
 
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
