@@ -25,17 +25,17 @@ def proof_of_work(last_proof):
     print("Searching for next proof")
     proof = 0
     #  TODO: Your code here
-    count = 0
-    print("Mining...")
-    proof = timer()
+    # count = 0
+    # print("Mining...")
+    # proof = timer()
 
     while valid_proof(last_proof, proof) is False:
-        count += 1
-        proof = timer()
-        if count > 1000000:
-            elapsed_time = timer() - start
-            print(f"Didn't find proof in {str(elapsed_time)}")
-            return
+        # count += 1
+        proof += 1
+        # if count > 1000000:
+        #     elapsed_time = timer() - start
+        #     print(f"Didn't find proof in {str(elapsed_time)}")
+        #     return
 
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
@@ -51,9 +51,12 @@ def valid_proof(last_hash, proof):
     """
 
     # TODO: Your code here!
-    last_hash_binary = last_hash.encode()
+    last_hash_binary = f'{last_hash}'.encode()
+    last_hash_proof = hashlib.sha256(last_hash_binary).hexdigest()
     guess = f'{proof}'.encode()
-    guess_hash = hashlib.sha256
+    guess_hash = hashlib.sha256(guess).hexdigest()
+    return guess_hash[:6] == last_hash_proof[-6:]
+
 
 
 if __name__ == '__main__':
