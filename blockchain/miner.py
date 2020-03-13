@@ -29,7 +29,7 @@ def proof_of_work(last_proof):
 
     while valid_proof(last_proof, proof) is False:
         count += 1
-        if count > 6**6:
+        if count > 10**6:
             elapsed_time = timer() - start
             print(f"Didn't find proof in {str(elapsed_time)}")
             return
