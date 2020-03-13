@@ -19,29 +19,15 @@ def reconstruct_trip(tickets, length):
     """
     YOUR CODE HERE
     """
-    ## bad answer, quadratic time
-    for ticket in tickets:
-        hash_table_insert(ht, ticket.source, ticket.destination)
-
     for i in range(length):
-        key = hash_table_retrieve(ht, tickets[i].source)
-        if key == "NONE":
-            
+        hash_table_insert(hashtable, tickets[i].source, tickets[i].destination)
 
-
-
-    for i in range(length):
-        hash_table_insert(ht, tickets[i].source, tickets[i].destination)
-
-        # if the ticket has no source, the dest is first in routes
-        if tickets[i].source == "NONE":
-            routes[0] = tickets[i].destination
-        # if ticket has no dest, the source is last in routes
-        elif tickets[i].destination == "NONE":
-            routes[-1] = tickets[i].source
-        
-        else:
-
+    current = hash_table_retrieve(hashtable, "NONE")
+    route[0] = current
+    for i in range(1, length):
+        next_stop = hash_table_retrieve(hashtable, current)
+        route[i] = next_stop
+        current = next_stop
     
-    return route
+    return route[:-1]
         
