@@ -12,12 +12,30 @@ def get_indices_of_item_weights(weights, length, limit):
     """
     YOUR CODE HERE
     """
+    index = 0
     for weight in weights:
-    # weight > limit, ignore it
-    # weight < limit, 
-    # check if limit - weight in hashtable
-    # return tuple if yes
-    # if no insert to hashtable as (weight, index)
+        # weight > limit, ignore it
+        if weight > limit:
+            continue
+        # otherwise
+        else:
+            # check if limit - weight in hashtable
+            if hash_table_retrieve(ht, (limit - weight)) is None:
+                # if no insert to hashtable as (weight, index)
+                hash_table_insert(ht, weight, index)
+            else:
+                # return tuple if yes
+                other_weight = hash_table_retrieve(ht, (limit - weight))
+                if weight > other_weight:
+                    answer = (index, other_weight.value)
+                    print(answer)
+                    return answer
+                else:
+                    answer = (other_weight.value, index)
+                    print(answer)
+                    return answer
+
+    index += 1
     # base case returns None
     return None
 
